@@ -24,51 +24,44 @@
 
 
 //! MVP 
-
-
-
-console.log('js is running')
+console.log('js is working here')
 
 function init() {
-  console.log('js is still  running')
 
+
+
+  console.log('js also working here')
   //* Variables 
   const grid = document.querySelector('.grid')
   console.log(grid)
-  const width = 10 
-  console.log(grid.width)
-  const cellCount = width * width 
+
+  const width = 20 
+  const cellCount = width * width
   const cells = []
 
-  const pikaClass = 'pika'
-  let pikaPosition = 0
+  //** The Grid 
 
-
-  //* Functions 
-
-  //*Grid Functions 
-
-
-  function createSnakeGrid(startingPosition) {
-    console.log(createSnakeGrid())
-    console.log('am i am idiot')
-
-    for (let i = 0; i < cellCount; i++) { 
+  function createSnakeGrid() {
+    for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
-      cell.textContent = i
+      // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
-    addPika(startingPosition)
-    console.log('clearly yes')
-  }
-  createSnakeGrid(pikaPosition)
-
-  function addPika(position) {
-    cells[position].classList.add(pikaClass)
-    createSnakeGrid(pikaPosition)
-
   }
 
-  window.addEventListener('DOMContentLoaded', init)
+  //* The Snake 
+
+  //* Grow the Snake 
+
+
+  //* Move the Snake 
+
+  //* Add the food 
+
+  //* Remove the food 
+
+  //* Event Listeners 
+  createSnakeGrid()
 }
+window.addEventListener('DOMContentLoaded', init)
