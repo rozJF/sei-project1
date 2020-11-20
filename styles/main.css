@@ -1,3 +1,49 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
   background-color: red;
+  height: 100vh;
+  margin-top: 50px;
+
+
+} 
+
+.grid {
+  
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  height: 80vmin;
+  width: 80vmin;
+  background: white;
+}
+.grid-wrapper {
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+}
+
+
+
+.grid div {
+  border: 1px solid black;
+  flex-grow: 1;
+  height: 10%;
+  width: 10%;
+}
+
+
+.snake {
+
+}
+
+.snake-food {
+
+
 }
