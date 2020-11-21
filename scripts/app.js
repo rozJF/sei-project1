@@ -5,6 +5,7 @@
 // create one block snake - get 'snake' moving with keyboard movement 
 
 //! PART TWO
+// snake move on key trigger 
 // get snake to be longer - towards growing 
 // create 'food' element 
 
@@ -24,6 +25,29 @@
 
 
 //! MVP 
+
+//* Getting Started
+  //* *Variables 
+  //** */ Functions 
+//* The Snake 
+
+ //* Grow the Snake 
+
+ //* Move the Snake 
+
+ //* Add the food 
+
+ //* Remove the food 
+
+  //** Event Listeners 
+
+
+
+
+
+
+
+
 console.log('js is working here')
 
 function init() {
@@ -39,18 +63,30 @@ function init() {
   const cellCount = width * width
   const cells = []
 
+  const snakeClass = 'snake' 
+  const snakeStart = 0
+
+  const foodClass = 'food'
+  const foodPosition = 0
+
   //** The Grid 
 
-  function createSnakeGrid() {
+  function createSnakeGrid(startingPostion) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
     }
+    addSnake(startingPostion)
+    // console.log(createSnakeGrid[1,1])
   }
 
-  //* The Snake 
+  //* The Snake to the grid 
+  function addSnake(position) {
+    cells[position].classList.add(snakeClass)
+  }
+
 
   //* Grow the Snake 
 
@@ -62,6 +98,7 @@ function init() {
   //* Remove the food 
 
   //* Event Listeners 
-  createSnakeGrid()
+  addSnake(snakeStart)
+  createSnakeGrid(snakeStart)
 }
 window.addEventListener('DOMContentLoaded', init)
