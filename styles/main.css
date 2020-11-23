@@ -47,8 +47,9 @@ background-repeat: no-repeat;
 cursor: pointer;
 }
 
-.grid div.snake-food {
-background-color: red;
+.grid div.food {
+background-color:blue;
 background-size: contain;
-
+background-repeat: no-repeat;
+cursor: pointer;
 }

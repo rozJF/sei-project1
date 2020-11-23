@@ -67,8 +67,8 @@ function init() {
   let snakeStart = 0
 
   let lastKeyPressed = 'right'
-  // const foodClass = 'food'
-  // const foodPosition = 0
+  const foodClass = 'food'
+  let foodPosition = 10
 
   //** The Grid 
 
@@ -83,6 +83,7 @@ function init() {
     // addSnake(startingPosition)
     addSnake(startingPosition)
     snakeMove()
+    addFood(foodPosition)
   }
 
   //* The Snake to the grid 
@@ -98,7 +99,7 @@ function init() {
 
 
   //* Move the Snake 
-  function handleKeydown (event) {
+  function handleChangeDirection (event) {
     removeSnake(snakeStart)
 
     const horizontalPosition = snakeStart % width
@@ -108,19 +109,22 @@ function init() {
       case 39: //arrow right 
         if (horizontalPosition < width - 1) snakeStart++
         lastKeyPressed = 'right'
-        console.log('i have moved right')
+        // console.log('i have moved right')
         break 
       case 37: //arrowleft
         if (horizontalPosition > 0) snakeStart--
         lastKeyPressed = 'left'
+        // console.log('move left')
         break 
       case 38: //arrowup
         if (verticalPosition > 0) snakeStart -= width
         lastKeyPressed = 'up'
+        // console.log('move up')
         break 
       case 40: //arrow down 
         if (verticalPosition < width - 1) snakeStart += width
         lastKeyPressed = 'down'
+        // console.log('move down')
         break 
       default: 
         console.log('INVALID KEY')
@@ -142,6 +146,7 @@ function init() {
     // //   console.log(new Date())
     // // }, 1000) 
     //     }
+
   }
 
   function gameOver() {
@@ -150,16 +155,29 @@ function init() {
 
   }
 
-  //* Add the food 
+  //* Add the food  //* Remove the food 
   // function addFood() {
   //   cells[position].classList.add(foodClass)
   // }
   // addFood()
 
-  //* Remove the food 
+  function addFood(position) {
+    cells[position].classList.add(foodClass)
+    console.log(addFood)
+  }
+  function removeFood(position){
+    cells[position].classList.remove(foodClass)
+  }
+
+  function randomFoodPosition() {
+    const randomCell = Math.floor(Math.random() * cellCount)
+
+  }
+
+ 
 
   //* Event Listeners 
-  document.addEventListener('keyup', handleKeydown)
+  document.addEventListener('keyup', handleChangeDirection)
   createSnakeGrid(snakeStart)
 }
 window.addEventListener('DOMContentLoaded', init)
