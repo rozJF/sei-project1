@@ -32,7 +32,7 @@ align-items: center;
 
 
 .grid div {
-  border: 1px solid palegreen;
+  border: 1px solid rgb(180, 233, 180);
   flex-grow: 1;
   height: 5%;
   width: 5%;
@@ -40,7 +40,8 @@ align-items: center;
 
 
 .grid div.snake {
-background-image: './styles/51QFEwUPV5L.jpg';
+background-image: '/Users/rozfagan/GA/development/PROJECTS/sei-project1/styles/51QFEwUPV5L.jpg';
+background-color: red;
 background-size: contain;
 background-repeat: no-repeat;
 cursor: pointer;

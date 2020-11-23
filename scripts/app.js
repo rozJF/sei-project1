@@ -6,13 +6,13 @@
 
 //! PART TWO
 // snake move on key trigger 
+// snake moving on a timer 
 // get snake to be longer - towards growing 
 // create 'food' element 
 
 //! PART THREE
 // work at getting the single cell snake to 'hit' the food 
 // identifier - snake hitting food 
-// snake moving on a timer 
 
 //! PART 4 
 // if snake hits food = snakegrows + snakespeed = snakespeed++ 
@@ -64,41 +64,102 @@ function init() {
   const cells = []
 
   const snakeClass = 'snake' 
-  const snakeStart = 0
+  let snakeStart = 0
 
-  const foodClass = 'food'
-  const foodPosition = 0
+  let lastKeyPressed = 'right'
+  // const foodClass = 'food'
+  // const foodPosition = 0
 
   //** The Grid 
 
-  function createSnakeGrid(startingPostion) {
+  function createSnakeGrid(startingPosition) {
     for (let i = 0; i < cellCount; i++) {
       const cell = document.createElement('div')
       // cell.textContent = i
       grid.appendChild(cell)
       cells.push(cell)
+      // console.log(cell)
     }
-    addSnake(startingPostion)
-    // console.log(createSnakeGrid[1,1])
+    // addSnake(startingPosition)
+    addSnake(startingPosition)
+    snakeMove()
   }
 
   //* The Snake to the grid 
   function addSnake(position) {
     cells[position].classList.add(snakeClass)
-  }
 
+  }
+  function removeSnake(position){
+    cells[position].classList.remove(snakeClass)
+  }  // addSnake(snakeStart)
 
   //* Grow the Snake 
 
 
   //* Move the Snake 
+  function handleKeydown (event) {
+    removeSnake(snakeStart)
+
+    const horizontalPosition = snakeStart % width
+    const verticalPosition = Math.floor(snakeStart / width)
+
+    switch (event.keyCode) {
+      case 39: //arrow right 
+        if (horizontalPosition < width - 1) snakeStart++
+        lastKeyPressed = 'right'
+        console.log('i have moved right')
+        break 
+      case 37: //arrowleft
+        if (horizontalPosition > 0) snakeStart--
+        lastKeyPressed = 'left'
+        break 
+      case 38: //arrowup
+        if (verticalPosition > 0) snakeStart -= width
+        lastKeyPressed = 'up'
+        break 
+      case 40: //arrow down 
+        if (verticalPosition < width - 1) snakeStart += width
+        lastKeyPressed = 'down'
+        break 
+      default: 
+        console.log('INVALID KEY')
+    }
+    addSnake(snakeStart)
+  }
+  function moveOne() {
+    const horizontalPosition = snakeStart % width
+
+    if (horizontalPosition < width - 1) snakeStart++
+    lastKeyPressed = 'right'
+  }
+  function snakeMove() {
+  //every second snake moves one position in the direction of the last key press 
+  // once function called - GO 
+  // first move on 
+    // setInterval(() => { 
+    // //   console.log('setInterval fired')
+    // //   console.log(new Date())
+    // // }, 1000) 
+    //     }
+  }
+
+  function gameOver() {
+  // if snake hits the wall or itself - GAME OVER 
+  // true or false keep playing/game over 
+
+  }
 
   //* Add the food 
+  // function addFood() {
+  //   cells[position].classList.add(foodClass)
+  // }
+  // addFood()
 
   //* Remove the food 
 
   //* Event Listeners 
-  addSnake(snakeStart)
+  document.addEventListener('keyup', handleKeydown)
   createSnakeGrid(snakeStart)
 }
 window.addEventListener('DOMContentLoaded', init)
