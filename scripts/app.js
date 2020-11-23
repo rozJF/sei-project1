@@ -57,6 +57,12 @@ function init() {
   console.log('js also working here')
   //* Variables 
   const grid = document.querySelector('.grid')
+
+  // links to DOM needed 
+  // Go button/trigger 
+  // score board display 
+  // maybe audio 
+
   console.log(grid)
 
   const width = 20 
@@ -64,11 +70,13 @@ function init() {
   const cells = []
 
   const snakeClass = 'snake' 
-  let snakeStart = 0
-
-  let lastKeyPressed = 'right'
   const foodClass = 'food'
+
+  let snakeDirection = 'right'
+  let snakeStart = 0
   let foodPosition = 10
+
+  //needed endgame, score, ?? 
 
   //** The Grid 
 

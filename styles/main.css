@@ -40,7 +40,7 @@ align-items: center;
 
 
 .grid div.snake {
-background-image: '/Users/rozfagan/GA/development/PROJECTS/sei-project1/styles/51QFEwUPV5L.jpg';
+/* background-image: url('./styles/51QFEwUPV5L.jpg'); */
 background-color: red;
 background-size: contain;
 background-repeat: no-repeat;
