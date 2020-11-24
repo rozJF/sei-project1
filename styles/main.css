@@ -32,7 +32,7 @@ align-items: center;
 
 
 .grid div {
-  /* border: 1px solid rgb(180, 233, 180); */
+  border: 1px solid rgb(180, 233, 180);
   flex-grow: 1;
   height: 5%;
   width: 5%;
@@ -46,8 +46,9 @@ background-size: contain;
 background-repeat: no-repeat;
 cursor: pointer;
 }
-.grid div.snaketail {
-  background-image: ;
+.grid div.tail {
+  /* background-image: ; */
+  background-color: green;
 }
 
 .grid div.food {

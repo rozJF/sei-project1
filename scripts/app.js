@@ -68,12 +68,15 @@ function init() {
 
   const snakeClass = 'snake' 
   const foodClass = 'food'
+  const snakeTail = 'tail'
   
 
-  // let snakeDirection = 'right'
+  let direction = 'right'
   let snakePosition = [209, 210, 211, 212]
   let foodAppear = 0
   let score = 0
+  let timer = 0
+  let time = 100
 
   //needed endgame, score, ?? 
 
@@ -104,7 +107,10 @@ function init() {
   }  // addSnake(snakeStart)
 
   //* Grow the Snake 
+  // function addsnakeTail(position) {
+  //   cells[snakePosition].classList.add(snakeTail)
 
+  // } addsnakeTail(snakePosition.push)
 
   //* Move the Snake 
   // function handleKeyTap (event) 
@@ -120,7 +126,7 @@ function init() {
         if (horizontalPosition < width - 1) snakePosition[0]++
         console.log('i have moved right')
         if (foodAppear === snakePosition[0] ) {        
-          console.log('eat food')
+          console.log(`eat food score is ${score}`)
           removeFood(foodAppear) 
           randomFoodPosition()
           addFood(foodAppear)
@@ -131,7 +137,7 @@ function init() {
         if (horizontalPosition > 0) snakePosition[0]--
         console.log('move left')
         if (foodAppear === snakePosition[0] ) {        
-          console.log('eat food')
+          console.log(`eat food score is ${score}`)
           removeFood(foodAppear) 
           randomFoodPosition()
           addFood(foodAppear)
@@ -141,7 +147,7 @@ function init() {
         if (verticalPosition > 0) snakePosition[0] -= width
         console.log('move up')
         if (foodAppear === snakePosition[0] ) {        
-          console.log('eat food')
+          console.log(`eat food score is ${score}`)
           removeFood(foodAppear) 
           randomFoodPosition()
           addFood(foodAppear)
@@ -156,11 +162,11 @@ function init() {
         if (verticalPosition < width - 1) snakePosition[0] += width
         console.log('move down')
         if (foodAppear === snakePosition[0] ) {        
-          console.log('eat food')
+          console.log(`eat food score is ${score}`)
           removeFood(foodAppear) 
           randomFoodPosition()
           addFood(foodAppear)
-          return score + 5
+          
         }  
         break 
       default: 
@@ -168,8 +174,10 @@ function init() {
     }
     addSnake(snakePosition[0])
   }
-
-  
+  function addToScore() {
+    score = score
+  }
+  addToScore()
   // function moveOne() {
   //   const horizontalPosition = snakePosition % width
 
@@ -188,18 +196,21 @@ function init() {
   }
 
   //* timer to move snake 
+  // function startGame() {
+  //   let count = 0
 
-  function startGame() {
-    // onclick - 
-    let timer = setInterval(() => {
-      console.log('setInterval fired')
-
-    }, 1000)
-    setTimeout(() => {
-      clearInterval(timer)
-    }, 5000)
-  }
-  startGame()
+  //   timer = setInterval(() => {
+  //     count++
+  //     console.log()
+  //     removeSnake(snakePosition)
+  //     moveSnake(direction)
+  //     addSnake(snakePosition)
+      
+      
+  //   },1000);
+  // }
+  
+  // startGame()
 
   function snakeEat() { 
     if (foodAppear === snakePosition[0]) {
@@ -207,8 +218,10 @@ function init() {
       removeFood(foodAppear)
       randomFoodPosition()
       addFood(foodAppear)
+      snakeTail(snakePosition)
+      // snake.push()
       
-    }
+    } return score + 5
 
   }
   snakeEat()
@@ -223,7 +236,6 @@ function init() {
 
   function addFood(position) {
     cells[position].classList.add(foodClass)
-    console.log()
   }
   function removeFood(position){
     cells[position].classList.remove(foodClass)
