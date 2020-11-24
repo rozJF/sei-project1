@@ -9,9 +9,9 @@
 //! PART TWO
 // snake move on key trigger 
 // snake moving on a timer 
-// get snake to be longer - towards growing 
+// get snake to be longer - towards growing (*)
 // create 'food' element (*)
-// food to randomly appear in 'foodPosition'
+// food to randomly appear in 'foodPosition'(*)
 
 //! PART THREE
 // work at getting the single cell snake to 'hit' the food 
@@ -45,12 +45,6 @@
   //** Event Listeners 
 
 
-
-
-
-
-
-
 console.log('js is working here')
 
 function init() {
@@ -60,7 +54,7 @@ function init() {
   console.log('js also working here')
   //* DOM 
   const grid = document.querySelector('.grid')
-
+  // let playSounds = document.querySelectorAll('sounds')
   // links to DOM needed 
   // Go button/trigger 
   // score board display 
@@ -74,6 +68,7 @@ function init() {
 
   const snakeClass = 'snake' 
   const foodClass = 'food'
+  
 
   // let snakeDirection = 'right'
   let snakePosition = [209]
@@ -111,38 +106,67 @@ function init() {
 
 
   //* Move the Snake 
-  function handleChangeDirection (event) {
-    // removeSnake(snakePosition)
+  // function handleKeyTap (event) 
+  function moveSnake(event) {
+    // removeSnake(snakePosition) remove last position .pop ? 
 
-    let horizontalPosition = snakePosition % width
-    let verticalPosition = Math.floor(snakePosition / width)
+    let horizontalPosition = snakePosition[0] % width
+    let verticalPosition = Math.floor(snakePosition[0] / width)
 
     switch (event.keyCode) {
       case 39: //arrow right 
-        if (horizontalPosition < width - 1) snakePosition++
-        lastKeyPressed = 'right'
+        if (horizontalPosition < width - 1) snakePosition[0]++
         console.log('i have moved right')
+        if (foodAppear === snakePosition[0] ) {        
+          console.log('eat food')
+          removeFood(foodAppear) 
+          randomFoodPosition()
+          addFood(foodAppear)
+
+        }
         break 
       case 37: //arrowleft
-        if (horizontalPosition > 0) snakePosition--
-        lastKeyPressed = 'left'
+        if (horizontalPosition > 0) snakePosition[0]--
         console.log('move left')
+        if (foodAppear === snakePosition[0] ) {        
+          console.log('eat food')
+          removeFood(foodAppear) 
+          randomFoodPosition()
+          addFood(foodAppear)
+        }
         break 
       case 38: //arrowup
-        if (verticalPosition > 0) snakePosition -= width
-        lastKeyPressed = 'up'
+        if (verticalPosition > 0) snakePosition[0] -= width
         console.log('move up')
+        if (foodAppear === snakePosition[0] ) {        
+          console.log('eat food')
+          removeFood(foodAppear) 
+          randomFoodPosition()
+          addFood(foodAppear)
+          
+        } if (snakePosition[0] === snakePosition[0]) {
+          // resetGame()
+      
+          console.log('error')
+        }
         break 
       case 40: //arrow down 
-        if (verticalPosition < width - 1) snakePosition += width
-        lastKeyPressed = 'down'
+        if (verticalPosition < width - 1) snakePosition[0] += width
         console.log('move down')
+        if (foodAppear === snakePosition[0] ) {        
+          console.log('eat food')
+          removeFood(foodAppear) 
+          randomFoodPosition()
+          addFood(foodAppear)
+        }
         break 
       default: 
         console.log('INVALID KEY')
     }
-    addSnake(snakePosition)
+    addSnake(snakePosition[0])
   }
+
+  
   // function moveOne() {
   //   const horizontalPosition = snakePosition % width
 
@@ -153,21 +177,35 @@ function init() {
   //every second snake moves one position in the direction of the last key press 
   // once function called - GO 
   // first move on 
-    // setInterval(() => { 
-    // //   console.log('setInterval fired')
-    // //   console.log(new Date())
-    // // }, 1000) 
-    //     }
+    
+    //if snake hits wall = (grid - 1)?? --> end game 
+    //if snake position = snake position --> end game
+    //if snake position = foodAppear --> eatFood() --> snake = snake +1 
 
   }
+
+  //* timer to move snake 
+
+  function startGame() {
+    const timer = setInterval(() => {
+      console.log('setInterval fired')
+    }, 1000)
+    setTimeout(() => {
+      clearInterval(timer)
+    }, 5000)
+  }
+  startGame()
+
   function snakeEat() { 
     if (foodAppear === snakePosition[0]) {
+      console.log('eat food')
       removeFood(foodAppear)
       randomFoodPosition()
       addFood(foodAppear)
-      eatSound()
     }
+
   }
+  snakeEat()
 
   // function gameOver() {
   // // if snake hits the wall or itself - GAME OVER 
@@ -190,21 +228,27 @@ function init() {
     // food can be anywhere that the snake isnt at that moment 
     if (snakePosition.includes(randomCell)) randomFoodPosition()
     else foodAppear = randomCell
+    
     // if (snakePosition === randomFoodPosition() => {
-
+    // foodAppear = randomCell
     // })
-    // else foodAppear = randomCell
+    // else 
   }
- 
+  
   //* sounds 
-  function eatSound(){ 
-    Audio.src = 'https://www.youtube.com/watch?v=kQDLUoo0olY'
-    Audio.play()
-  } 
+  // console.log(playSounds)
+  // function snakeSounds(){ 
 
+  // }
+  function resetGame() {
+    snakePosition = [209]
+    randomFoodPosition()
+    
+  }
+  resetGame()
 
   //* Event Listeners 
-  document.addEventListener('keyup', handleChangeDirection)
+  document.addEventListener('keyup', moveSnake)
   createSnakeGrid(snakePosition)
 }
 window.addEventListener('DOMContentLoaded', init)
