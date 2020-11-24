@@ -32,7 +32,7 @@ align-items: center;
 
 
 .grid div {
-  border: 1px solid rgb(180, 233, 180);
+  /* border: 1px solid rgb(180, 233, 180); */
   flex-grow: 1;
   height: 5%;
   width: 5%;
@@ -40,15 +40,19 @@ align-items: center;
 
 
 .grid div.snake {
-/* background-image: url('./styles/51QFEwUPV5L.jpg'); */
-background-color: red;
+background-image: url('./51QFEwUPV5L.jpg');
+/* background-color: red; */
 background-size: contain;
 background-repeat: no-repeat;
 cursor: pointer;
 }
+.grid div.snaketail {
+  background-image: ;
+}
 
 .grid div.food {
-background-color:blue;
+  background-image: url('./illustration-red-valentine-heart-600w-71723296.webp');
+/* background-color:blue; */
 background-size: contain;
 background-repeat: no-repeat;
 cursor: pointer;

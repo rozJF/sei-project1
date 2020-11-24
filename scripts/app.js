@@ -71,8 +71,9 @@ function init() {
   
 
   // let snakeDirection = 'right'
-  let snakePosition = [209]
+  let snakePosition = [209, 210, 211, 212]
   let foodAppear = 0
+  let score = 0
 
   //needed endgame, score, ?? 
 
@@ -94,8 +95,8 @@ function init() {
   }
 
   //* The Snake to the grid 
-  function addSnake(position) {
-    cells[position].classList.add(snakeClass)
+  function addSnake(snakePosition) {
+    cells[snakePosition].classList.add(snakeClass)
 
   }
   function removeSnake(position){
@@ -108,7 +109,8 @@ function init() {
   //* Move the Snake 
   // function handleKeyTap (event) 
   function moveSnake(event) {
-    // removeSnake(snakePosition) remove last position .pop ? 
+    removeSnake(snakePosition) 
+    // remove last position .pop ? 
 
     let horizontalPosition = snakePosition[0] % width
     let verticalPosition = Math.floor(snakePosition[0] / width)
@@ -144,10 +146,10 @@ function init() {
           randomFoodPosition()
           addFood(foodAppear)
           
-        } if (snakePosition[0] === snakePosition[0]) {
-          // resetGame()
+        // } if (snakePosition[0].classList('snake')) {
+        //   // resetGame()
       
-          console.log('error')
+        //   console.log('error')
         }
         break 
       case 40: //arrow down 
@@ -158,7 +160,8 @@ function init() {
           removeFood(foodAppear) 
           randomFoodPosition()
           addFood(foodAppear)
-        }
+          return score + 5
+        }  
         break 
       default: 
         console.log('INVALID KEY')
@@ -173,7 +176,7 @@ function init() {
   //   if (horizontalPosition < width - 1) snakePosition++
   //   lastKeyPressed = 'right'
   // }
-  function snakeMove() {
+  function snakeGrow() {
   //every second snake moves one position in the direction of the last key press 
   // once function called - GO 
   // first move on 
@@ -187,8 +190,10 @@ function init() {
   //* timer to move snake 
 
   function startGame() {
-    const timer = setInterval(() => {
+    // onclick - 
+    let timer = setInterval(() => {
       console.log('setInterval fired')
+
     }, 1000)
     setTimeout(() => {
       clearInterval(timer)
@@ -202,6 +207,7 @@ function init() {
       removeFood(foodAppear)
       randomFoodPosition()
       addFood(foodAppear)
+      
     }
 
   }
